@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="alert">alert test</button>
+        <alert-box>{{todos}}</alert-box>
+    </div>
+
+    <script>
+        Vue.component('alert-box', {
+            template: `
+                <div class="demo-alert-box">
+                <strong>Error!</strong>
+                <slot></slot>
+                </div>
+            `
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                todos: 'dddddddd',
+                message: '22222'
+            },
+            methods: {
+                alert() {
+                    this.todos = 12232323232;
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>

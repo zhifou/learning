@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span v-bind:title="createTime">{{message}}</span>
+        <p v-if="seen">现在你看到我了</p>
+        <ol>
+            <li v-for="todo in todos">
+              {{ todo.text }}
+            </li>
+          </ol>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                seen: true,
+                createTime: `页面加载于${new Date().toLocaleString()}`,
+                message: 'hello world.',
+                todos: [
+                    { text: '学习 JavaScript' },
+                    { text: '学习 Vue' },
+                    { text: '整个牛项目' }
+                    ]
+                }
+        });
+        
+    </script>
+</body>
+</html>

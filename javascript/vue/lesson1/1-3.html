@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span>{{message}}</span>
+        <input type="text" v-model="message"/>
+        <div>{{fullName}}</div>
+        <input type="text" v-model:value="firstName"/>
+        <input type="text" v-model:value="lastName"/>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'Foo',
+                lastName: 'Bar',
+                fullName: 'Foo Bar',
+                message: 'hello world.'
+            },
+            watch: {
+                firstName: function (val) {
+                this.fullName = val + ' ' + this.lastName
+                },
+                lastName: function (val) {
+                this.fullName = this.firstName + ' ' + val
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>
