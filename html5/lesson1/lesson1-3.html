@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自动选择文本框/编辑框中的文字</title>
+    <style>
+      input {
+        cursor: pointer;
+      }
+      textarea {
+        cursor: pointer;
+      }
+      ul {
+          list-style: none;
+      }
+      li {
+          width: 200px;
+          height: 50px;
+          background-color: coral;
+
+      }
+      .current {
+          background-color: chartreuse;
+          border: blue dashed 1px;
+          cursor: pointer;
+      }
+    </style>
+    <script type="text/javascript">
+      function selectInput(event) {
+        if (document.form1.title.focus) {
+          document.form1.title.select();
+          document.form1.title.style.border = 'dotted 1px #ff00ff';
+        }
+      }
+      function selectArea() {
+        if (document.form1.content.focus) {
+          document.form1.content.select();
+        }
+      }
+    </script>
+  </head>
+  <body style="font-size:12px">
+    <ul id="oul">
+        <li class="current">1</li>
+        <li contenteditable="true">2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <form name="form1">
+      <input
+        draggable="true"
+        name="title"
+        type="text"
+        size="50"
+        value="选中input文字"
+        onClick="selectInput()"
+      />
+      <textarea
+        draggable="true"
+        name="content"
+        cols="50"
+        rows="6"
+        onClick="selectArea()"
+      >
+选中textarea文字</textarea
+      >
+    </form>
+    <script>
+        var oul = document.getElementById("oul");
+        var list = oul.children;
+        var selectObjc = list[0];
+        for(var i = 0; i < list.length; i++){
+            list[i].onclick = function(e){
+                    //清空原来的
+                    selectObjc.className = "";
+                    //选择现在的
+                    this.className = "current";
+                    //把现在的 赋值给原来的 更新
+                    selectObjc = this;
+                    console.log(e, this);
+                    e.srcElement.contentEditable = true;
+            };
+
+        }
+    </script>
+  </body>
+</html>
