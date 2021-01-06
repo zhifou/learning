@@ -5,6 +5,9 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 
 const Todo = () => {
+    // 采用下面的写法，someExpensiveComputation函数只会在初始化渲染中被调用，后续渲染时会被忽略
+    // const initialState = someExpensiveComputation(props); 
+    // const [state, setState] = useState(initialState);
     const [list, setList] = useState([]);
     const [inputValue, setInputValue] = useState('');
     // 就是相当于全局作用域，一处被修改，其他地方全更新

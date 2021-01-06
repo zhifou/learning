@@ -9,6 +9,8 @@ import Father from './components/father';
 import WindowSize from './components/windowSize';
 import Reducer from './components/context';
 import Callback from './components/callback';
+import ForwardRef from './components/forwardRef';
+import UseImperativeHandle from './components/useImperativeHandle';
 
 const App = () => {
     return (
@@ -29,6 +31,12 @@ const App = () => {
           <Link to="/callback" style={{ padding: 5 }}>
             Callback
           </Link>
+          <Link to="/forwardRef" style={{ padding: 5 }}>
+            ForwardRef
+          </Link>
+          <Link to="/useImperativeHandle" style={{ padding: 5 }}>
+          UseImperativeHandle
+          </Link>
         </nav>
         <Routes>
           <Route path="/" element={<Todo />} />
@@ -36,6 +44,8 @@ const App = () => {
           <Route path="/windowsize" element={<WindowSize />} />
           <Route path="/reducer" element={<Reducer />} />
           <Route path="/callback" element={<Callback />} />
+          <Route path="/forwardRef" element={<ForwardRef />} />
+          <Route path="/useImperativeHandle" element={<UseImperativeHandle />} />
         </Routes>
       </Router>
     )
