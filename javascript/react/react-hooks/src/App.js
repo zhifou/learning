@@ -11,6 +11,7 @@ import Reducer from './components/context';
 import Callback from './components/callback';
 import ForwardRef from './components/forwardRef';
 import UseImperativeHandle from './components/useImperativeHandle';
+import UseSlider from './components/useSlider';
 
 const App = () => {
     return (
@@ -37,6 +38,9 @@ const App = () => {
           <Link to="/useImperativeHandle" style={{ padding: 5 }}>
           UseImperativeHandle
           </Link>
+          <Link to="/useSlider" style={{ padding: 5 }}>
+          UseSlider
+          </Link>
         </nav>
         <Routes>
           <Route path="/" element={<Todo />} />
@@ -46,6 +50,7 @@ const App = () => {
           <Route path="/callback" element={<Callback />} />
           <Route path="/forwardRef" element={<ForwardRef />} />
           <Route path="/useImperativeHandle" element={<UseImperativeHandle />} />
+          <Route path="/useSlider" element={<UseSlider />} />
         </Routes>
       </Router>
     )
