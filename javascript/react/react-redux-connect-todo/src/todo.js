@@ -16,6 +16,7 @@ import {
     addItemAction,
     deleteItemAction
 } from './store/actions';
+import withStorage from './hoc/withStorage';
 
 class TodoList extends PureComponent {
     constructor(props) {
@@ -24,7 +25,8 @@ class TodoList extends PureComponent {
     }
     render() {
         const {handleMockData, handleClick, deleteItem, changeInputValue} = this.props;
-        const {inputValue, list} = this.props;
+        const {inputValue, list, todoList} = this.props;
+        console.log(todoList);
         return (
             <div style={{ margin: '10px', width: '600px' }}>
                 <h1>React and Redux TodoList</h1>
@@ -94,4 +96,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+const Todo = connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default withStorage(Todo)('todoList');
+

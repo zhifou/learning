@@ -1,0 +1,8 @@
+{
+  "name": "functional-coding",
+  "version": "0.0.1",
+  "description": "函数式编程的工程项目",
+  "devDependencies": {
+    "lodash": "^4.17.4"
+  }
+}

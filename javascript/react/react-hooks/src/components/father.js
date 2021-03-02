@@ -10,6 +10,8 @@ const Father = () => {
     const [text, setText] = useState('')
     // useMemo暂存能力，暂存了上一次name结果，可以减少子控件的无效render，提高渲染性能
     // useMemo 是缓存值的，父控件上的count变化，不引起子控件的data变化，子控件不渲染
+    // 对比useMemo，useMemo缓存的是一个值，useCallback缓存的是一个函数，是对一个单独的props值进行缓存
+    // memo缓存的是组件本身，是站在全局的角度进行优化
     const data = useMemo(() => {
         return {
             name

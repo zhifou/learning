@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circle {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            ;
+        }
+
+        #countdown {
+            display: inline-block;
+            position: relative;
+        }
+
+        span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            font-size: 500px;
+            font-family: monospace;
+            color: #F36F21;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #43119A;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" @click="animate">
+        <div id="countdown">
+            <svg :width="size" :height="size">
+                <circle fill="transparent" :stroke-width="stroke" stroke="#270B58" :r="radius" :cx="circleOffset"
+                    :cy="circleOffset"></circle>
+                <circle class="circle" fill="transparent" :stroke-width="stroke" stroke="#F36F21" :r="radius"
+                    :cx="circleOffset" :cy="circleOffset" :stroke-dasharray="circumference"
+                    :stroke-dashoffset="progress" stroke-linecap="round"></circle>
+            </svg>
+            <span>{{ countdown }}</span>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            size: 600,
+            stroke: 30,
+            percentage: 100,
+            timer: null,
+            seconds: 5,
+        },
+        computed: {
+            radius() {
+                return (this.size / 2) - (this.stroke / 2);
+            },
+            circleOffset() {
+                return this.size / 2;
+            },
+            circumference() {
+                return this.radius * 2 * Math.PI;
+            },
+            progress() {
+                return this.circumference - this.circumference * this.percentage / 100;
+            },
+            countdown() {
+                return Math.ceil(this.seconds * this.percentage / 100)
+            }
+        },
+        methods: {
+            animate() {
+                this.timer = setInterval(() => {
+                    this.percentage -= 1 / 10;
+
+                    if (this.percentage <= 0) {
+                        clearInterval(this.timer)
+                        this.percentage = 100;
+                    }
+                }, this.seconds * 1000 / 100 / 10)
+            }
+        }
+    })
+</script>
+
+</html>

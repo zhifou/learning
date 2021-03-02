@@ -9,6 +9,7 @@ import Father from './components/father';
 import WindowSize from './components/windowSize';
 import Reducer from './components/context';
 import Callback from './components/callback';
+import Callback1 from './components/callback1';
 import ForwardRef from './components/forwardRef';
 import UseImperativeHandle from './components/useImperativeHandle';
 import UseSlider from './components/useSlider';
@@ -32,6 +33,9 @@ const App = () => {
           <Link to="/callback" style={{ padding: 5 }}>
             Callback
           </Link>
+          <Link to="/callback-question" style={{ padding: 5 }}>
+            Callback问题
+          </Link>
           <Link to="/forwardRef" style={{ padding: 5 }}>
             ForwardRef
           </Link>
@@ -48,6 +52,7 @@ const App = () => {
           <Route path="/windowsize" element={<WindowSize />} />
           <Route path="/reducer" element={<Reducer />} />
           <Route path="/callback" element={<Callback />} />
+          <Route path="/callback-question" element={<Callback1 />} />
           <Route path="/forwardRef" element={<ForwardRef />} />
           <Route path="/useImperativeHandle" element={<UseImperativeHandle />} />
           <Route path="/useSlider" element={<UseSlider />} />
