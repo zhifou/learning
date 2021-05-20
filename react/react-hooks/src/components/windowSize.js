@@ -2,10 +2,10 @@
  * @file windowSize测试自定义hook
  */
 import React from 'react';
-import useWindowSize from '../plugins/useWindowSize';
+import {useWindowSize} from 'zhooks';
 
 const WindowSize = () => {
-    const [width, height] = useWindowSize();
+    const {width, height} = useWindowSize();
 
     return (
         <div>
