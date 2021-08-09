@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../libs/three.js"></script>
+</head>
+
+<body>
+    <script>
+        /**
+         * 本文的重点：了解threejs中的几个要素
+         * 1、场景Scene
+         * 2、几何体Geometry
+         * 3、材料Material
+         * 4、光源Light
+         * 5、相机Camera
+         * 6、渲染器Renderer
+         */
+        // 全局变量
+        let renderer;
+        let scene;
+        let camera;
+
+        function init() {
+
+            // 创建场景
+            scene = new THREE.Scene();
+
+            // 创建一个球体几何对象
+            let sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
+            
+            // 创建一个网格材料对象
+            let sphereMaterial = new THREE.MeshLambertMaterial({color: 0x7777ff});
+            
+            // 通过几何对象和材料对象创建一个可视化的球体，并添加到场景中
+            let sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+            sphere.position.set(10, 4, 2);
+            scene.add(sphere);
+
+            /**
+             * 设置光源
+             */
+            // 新建一个点光源
+            let point = new THREE.PointLight(0xff00ff);
+            // 点光源位置
+            point.position.set(40, 20, 30);
+            // 将点光源添加到场景中
+            scene.add(point);
+
+            /**
+             * 设置相机
+             */
+            // 创建一个相机
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            // 设置相机在创景中的位置
+            camera.position.set(20, 30, 20);
+            // 设置相机的方向（指向的场景对象）
+            camera.lookAt(scene.position);
+
+            /**
+             * 创建渲染器对象
+             */
+            // 创建一个渲染器，这里使用WebGL渲染器
+            renderer = new THREE.WebGLRenderer();
+            // 设置渲染器的背景色
+            renderer.setClearColor(0x808080, 1.0);
+            // 设置渲染器区域尺寸
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            // 将渲染器的dom对象添加到文档中
+            document.body.appendChild(renderer.domElement);
+
+            // 执行render方法，进行渲染
+            render();
+        }
+
+        let T0 = new Date();
+
+        function render() {
+            let T1 = new Date(); // 本次时间
+            let t = T1 - T0; // 时间差
+            T0 = T1; // 把本次时间赋值给上次时间
+            requestAnimationFrame(render);
+            // 每次绕Y轴旋转0.01弧度
+            scene.rotateY(0.01 * t);
+            renderer.render(scene, camera);
+        }
+
+        // 执行init初始化方法
+        window.onload = init;
+    </script>
+</body>
+
+</html>

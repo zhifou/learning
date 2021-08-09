@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>three.js 创建 多面立方体</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #glcvs {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            background: #dddddd;
+        }
+    </style>
+
+<body cz-shortcut-listen="true" style="">
+    <div id="glcvs"></div>
+
+    <script type="text/javascript" src="../libs/three.min.js"></script>
+    <script type="text/javascript" src="../controls/OrbitControls.js"></script>
+    <script>
+
+        var container;
+        var camera, scene, mesh, materialMulti, raycaster, renderer;
+        var mouse = new THREE.Vector3();
+        var controls;
+        init();
+        animate();
+        function init() {
+            //创建画布实例
+            container = document.getElementById('glcvs');
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setClearColor(0xF1F1F1); //窗口颜色
+            document.body.appendChild(renderer.domElement);
+            // 获取3d 中物体的点击事件
+            raycaster = new THREE.Raycaster();
+            //初始化相机  40度 camera
+            camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 1, 500000);
+            // 设置相机位置
+            camera.up = new THREE.Vector3(0, 0, 1);
+            camera.position.set(0, -10000, 1800);
+
+            //创建场景 所有创建实例需添加到场景中
+            scene = new THREE.Scene();
+            //设置光源颜色
+            scene.add(new THREE.AmbientLight(0x777777));
+
+            // 添加平行光
+            var directionalLight = new THREE.DirectionalLight(0xFF0000, 0.92);
+            directionalLight.position.set(300, 200, 500);
+            scene.add(directionalLight);
+
+            var directionalLight2 = new THREE.DirectionalLight(0xFf0000, 0.38);
+            directionalLight2.position.set(-200, -100, 100);
+            scene.add(directionalLight2);
+            // 创建单面立方体
+            // var geometry = new THREE.CubeGeometry(500, 500, 500);//创建一个立方体
+            // var material = new THREE.MeshBasicMaterial({color: 0xff0000});//填充的材质
+            // var cube = new THREE.Mesh(geometry, material);
+
+            // cube.position.set(0,0,250);  //填充元素定位
+            // scene.add(cube);//场景添加网格
+
+            // 创建多面立方体
+
+            var geom = new THREE.BoxGeometry(500, 500, 500);
+
+            var materialSimple = new THREE.MeshLambertMaterial({
+                color: 0x020202
+            });
+            // 6-color 
+            materialMulti = [
+                new THREE.MeshLambertMaterial({
+                    color: 0xff0000
+                }),
+                new THREE.MeshLambertMaterial({
+                    color: 0xffff00
+                }),
+                new THREE.MeshLambertMaterial({
+                    color: 0xffffff
+                }),
+                new THREE.MeshLambertMaterial({
+                    color: 0x00ffff
+                }),
+                new THREE.MeshLambertMaterial({
+                    color: 0x0000ff
+                }),
+                new THREE.MeshLambertMaterial({
+                    color: 0x000000
+                })
+            ];
+
+            mesh = new THREE.Mesh(geom, materialSimple); // multi-material init.
+            mesh.material = materialMulti;
+            mesh.material.needsUpdate = true;
+            scene.add(mesh);
+            //网格
+            //网格 边长为20000，大网格中有小网格，小网格的边长是1000.
+            var gridHelper = new THREE.GridHelper(20000, 20, 0x0000ff, 0x808080);
+            gridHelper.rotation.x = Math.PI / 2;
+            gridHelper.enabled = false;
+            scene.add(gridHelper);
+            //渲染画布
+            container.appendChild(renderer.domElement);
+
+            // CONTROLS
+            //用户交互插件 鼠标左键按住旋转，右键按住平移，滚轮缩放
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            //聚焦坐标
+            controls.target.set(0, 0, 0);
+            controls.update();
+
+            container.addEventListener('click', onWindowMouseMove, false);
+            window.addEventListener('resize', onWindowResize, false);
+        }
+        // 监听window 在canvas 上 点击穿透事件
+        var runStop = false;
+        function onWindowMouseMove(event) {
+            event.preventDefault();
+
+            mouse.x = ((event.clientX) / container.clientWidth) * 2 - 1;
+            mouse.y = - ((event.clientY) / container.clientHeight) * 2 + 1;
+            mouse.z = 0.5;
+
+            raycaster.setFromCamera(mouse, camera);
+            var intersects = raycaster.intersectObjects(scene.children, true); //点击穿透
+            runStop = !runStop;
+            console.log(intersects);
+        }
+
+
+        function onWindowResize() {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+        function animate() {
+            requestAnimationFrame(animate);
+            render();
+        }
+
+        function render() {
+            //var time = Date.now() * 0.001;
+            // requestAnimationFrame(render);
+            controls.update();
+            // 创建立方体旋转
+            if (!runStop) {
+                mesh.rotation.x += 0.01;
+                mesh.rotation.y += 0.01;
+            }
+            renderer.render(scene, camera);
+        }
+
+
+    </script>
+
+    <div>
+        <div
+            style="display: none; position: fixed; top: 30px; width: auto; max-width: 100%; text-align: center; left: 50%; transform: translateX(-50%); z-index: 99999999;">
+            <div
+                style="display: inline-block; font-size: 14px; font-weight: bold; border: 1px solid rgb(240, 195, 109); background-color: rgb(249, 237, 190); padding: 0px 10px; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

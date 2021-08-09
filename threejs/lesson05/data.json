@@ -1,0 +1,40 @@
+[{
+    "name": "海门",
+    "value": 9,
+    "coordinate": [121.15, 31.89]
+  },
+  {
+    "name": "海口",
+    "value": 29,
+    "coordinate": [120.15, 30.89]
+  },
+  {
+    "name": "夏门",
+    "value": 19,
+    "coordinate": [123.15, 33.89]
+  },
+  {
+    "name": "台北",
+    "value": 39,
+    "coordinate": [111.15, 34.89]
+  },
+  {
+    "name": "福州",
+    "value": 49,
+    "coordinate": [123.15, 35.89]
+  },
+  {
+    "name": "泉州",
+    "value": 59,
+    "coordinate": [124.15, 34.89]
+  },
+  {
+    "name": "青岛",
+    "value": 18,
+    "coordinate": [120.33, 36.07]
+  },{
+    "name": "武汉",
+    "value": 273,
+    "coordinate": [114.31, 30.52]
+  }]
+  

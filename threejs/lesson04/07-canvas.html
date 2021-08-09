@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 128;
+        const ctx = canvas.getContext('2d');
+
+        const image = new Image();
+        image.src = 'http://www.abcstatic.com/images/png/xiaodu-gray.png';
+        image.onload = function () {
+            // const bg = ctx.createPattern(image, 'no-repeat');
+            ctx.drawImage(image, 0, 0, 100, 100);
+        }
+        document.body.appendChild(canvas);
+    </script>
+</body>
+
+</html>

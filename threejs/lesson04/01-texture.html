@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Example 01.02 - First Scene</title>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="../libs/three.js"></script>
+    <script src="../libs/stats.min.js"></script>
+    <script src="../controls/OrbitControls.js"></script>
+    <style>
+        body {
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Div which will hold the Output -->
+    <div id="WebGL-output">
+    </div>
+
+    <!-- Javascript code that runs our Three.js examples -->
+    <script type="text/javascript">
+        let scene;
+        let camera;
+        let renderer;
+
+        // once everything is loaded, we run our Three.js stuff.
+        function init() {
+
+            // create a scene, that will hold all our elements such as objects, cameras and lights.
+            scene = new THREE.Scene();
+
+            // create a camera, which defines where we're looking at.
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+            // create a render and set the size
+            renderer = new THREE.WebGLRenderer();
+            // renderer.setClearColorHex();
+            renderer.setClearColor(new THREE.Color(0xEEEEEE));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            // show axes in the screen
+            const axes = new THREE.AxisHelper(20);
+            scene.add(axes);
+
+
+            // TextureLoader创建一个纹理加载器对象，可以加载图片作为几何体纹理
+            // const textureLoader = new THREE.TextureLoader();
+
+            // textureLoader.load('http://www.abcstatic.com/images/jpg/bg-18.jpg', function (texture) {
+            //     const material = new THREE.MeshBasicMaterial({
+            //         // color: 0x0fffff,
+            //         // 设置颜色纹理贴图：Texture对象作为材质map属性的属性值
+            //         map: texture,    // 设置颜色贴图属性
+            //         side: THREE.DoubleSide
+            //     });
+            //     // 纹理贴图映射到一个矩形平面上
+            //     const geometry = new THREE.PlaneGeometry(224, 112);
+            //     const mesh = new THREE.Mesh(geometry, material);
+            //     scene.add(mesh);
+            //     render();
+            // });
+
+            const material = new THREE.MeshBasicMaterial({
+                // map: texture, //设置纹理贴图
+            });
+            // 图片加载器方式加载纹理
+            const ImageLoader = new THREE.ImageLoader();
+            // load方法回调函数，按照路径加载图片，返回一个html的元素img对象
+            ImageLoader.load('http://www.abcstatic.com/images/jpg/bg-20.jpg', function (img) {
+                // image对象作为参数，创建一个纹理对象Texture
+                const texture = new THREE.Texture(img);
+                // 下次使用纹理时触发更新
+                texture.needsUpdate = true;
+                material.map = texture;
+                // 告诉threejs渲染器系统，材质对象的map属性已更新
+                material.needsUpdate = true;
+            });
+
+            // 纹理贴图映射到一个矩形平面上
+            const geometry = new THREE.SphereGeometry(100, 200, 200);
+            const mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
+            scene.add(mesh); //网格模型添加到场景中
+
+            // position and point the camera to the center of the scene
+            camera.position.x = 200;
+            camera.position.y = 200;
+            camera.position.z = 200;
+            camera.lookAt(scene.position);
+
+            // add the output of the renderer to the html element
+            document.getElementById("WebGL-output").appendChild(renderer.domElement);
+
+            // 创建鼠标滚动控制对象
+            let controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+            // render the scene
+            render();
+
+        }
+        function render() {
+            requestAnimationFrame(render);
+            scene.rotation.x += 0.001;
+            scene.rotation.y += 0.001;
+            scene.rotation.z += 0.001;
+            renderer.render(scene, camera);
+        }
+
+        window.onload = init;
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="../libs/three.js"></script>
+    <script src="../libs/stats.min.js"></script>
+    <script src="../controls/OrbitControls.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="Stats-output"></div>
+    <div id="WebGL-output"></div>
+    <script type="text/babel">
+        /**
+         * 本文的重点：了解threejs中的几个要素
+         */
+        // 全局变量
+        let renderer;
+        let scene;
+        let camera;
+        let meshs;
+        let stats;
+
+        /**
+         * 初始化场景对象
+         */
+        const initScene = () => {
+            // 创建场景
+            const scene = new THREE.Scene();
+            return scene;
+        }
+
+        /**
+         * 初始化网格模型
+         */
+        function initMesh() {
+            const meshs = [];
+
+            const path = new THREE.CatmullRomCurve3([
+                new THREE.Vector3(-10, -50, -50),
+                new THREE.Vector3(10, 0, 0),
+                new THREE.Vector3(8, 50, 50),
+                new THREE.Vector3(-5, 0, 100)
+            ]);
+            const geometry = new THREE.TubeGeometry(path, 40, 2, 25);
+
+            const material = new THREE.LineBasicMaterial({
+                color: 0x00ffff
+            });
+            const line = new THREE.Line(geometry, material);
+            meshs.push(line);
+
+            // 创建多段线条的顶点数据
+            const p1 = new THREE.Vector3(-85.35, -35.36)
+            const p2 = new THREE.Vector3(-50, 0, 0);
+            const p3 = new THREE.Vector3(0, 50, 0);
+            const p4 = new THREE.Vector3(50, 0, 0);
+            const p5 = new THREE.Vector3(85.35, -35.36);
+            // 创建线条一：直线
+            let line1 = new THREE.LineCurve3(p1, p2);
+            // 重建线条2：三维样条曲线
+            const curve = new THREE.CatmullRomCurve3([p2, p3, p4]);
+            // 创建线条3：直线
+            let line2 = new THREE.LineCurve3(p4, p5);
+            const CurvePath = new THREE.CurvePath();// 创建CurvePath对象
+            CurvePath.curves.push(line1, curve, line2);// 插入多段线条
+            //通过多段曲线路径创建生成管道
+            //通过多段曲线路径创建生成管道，CCurvePath：管道路径
+            const geometry2 = new THREE.TubeGeometry(CurvePath, 100, 5, 25, false);
+
+            const material2 = new THREE.LineBasicMaterial({
+                color: 0x00ff88
+            });
+            const lineCurve = new THREE.Line(geometry2, material2);
+            meshs.push(lineCurve);
+
+            return meshs;
+        }
+
+        /**
+         * 初始化光源对象
+         */
+        function initLight() {
+            const lights = [];
+
+            // 新建一个环境光
+            const ambient = new THREE.AmbientLight(0x0c0c0c);
+            lights.push(ambient);
+
+            // 新建一个聚光灯
+            const spotLight = new THREE.SpotLight(0xffffff);
+            spotLight.position.set(0, 400, 0);
+            spotLight.castShadow = true;
+            lights.push(spotLight);
+
+            return lights;
+        }
+
+        /**
+         * 初始化相机对象
+         */
+        function initCamera() {
+            // 创建一个相机
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            // 设置相机在创景中的位置
+            camera.position.set(200, 300, 300);
+            return camera;
+        }
+
+        /**
+         * 初始化渲染器对象
+         */
+        function initRenderer() {
+            // 创建一个渲染器，这里使用WebGL渲染器
+            const renderer = new THREE.WebGLRenderer({
+                antialias: true
+            });
+            // 设置渲染器的背景色
+            renderer.setClearColor(0xc0c0c0, 1.0);
+            // 设置渲染器区域尺寸
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            return renderer;
+        }
+
+        function init() {
+            // 初始化统计
+            stats = initStats();
+
+            // 初始化场景
+            scene = initScene();
+
+            // 初始化网格模型
+            meshs = initMesh();
+
+            // 将网格模型添加到场景中
+            meshs.forEach(mesh => {
+                scene.add(mesh);
+            });
+
+            // 初始化灯光
+            const lights = initLight();
+
+            // 将光源添加到场景中
+            lights.forEach(light => {
+                scene.add(light);
+            });
+
+            // 初始化相机
+            camera = initCamera();
+            // 设置相机的方向（指向的场景对象）
+            camera.lookAt(scene.position);
+
+            // 辅助坐标系  参数250表示坐标系大小，可以根据场景大小去设置
+            let axesHelper = new THREE.AxesHelper(250);
+            scene.add(axesHelper);
+
+            // 初始化渲染器
+            renderer = initRenderer();
+
+            // 将渲染器的dom对象添加到文档中
+            document.getElementById("WebGL-output").appendChild(renderer.domElement);
+
+            // 创建鼠标滚动控制对象
+            let controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+            // 执行render方法，进行渲染
+            render();
+        }
+
+        let step = 0;
+        function render() {
+            // 统计更新
+            stats.update();
+            requestAnimationFrame(render);
+            renderer.render(scene, camera);
+        }
+
+        function initStats() {
+            const stats = new Stats();
+            stats.setMode(0);   // 0: fps, 2: ms
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '0px';
+            stats.domElement.style.top = '0px';
+            document.getElementById("Stats-output").appendChild(stats.domElement);
+            return stats;
+        }
+
+        // 执行init初始化方法
+        window.onload = init;
+    </script>
+</body>
+
+</html>

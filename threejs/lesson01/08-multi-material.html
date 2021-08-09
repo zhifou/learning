@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js学习教程，第1章，第8节，学习多面体材料</title>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="../libs/three.js"></script>
+    <script src="../controls/OrbitControls.js"></script>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #app {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            background: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        /**
+         * 本文的重点：了解threejs中的几个要素
+         * 1、场景Scene
+         * 2、几何体Geometry
+         * 3、材料Material
+         * 4、光源Light
+         * 5、相机Camera
+         * 6、渲染器Renderer
+         * 7、控制器Control
+         * 8、网格GridHelper
+         */
+        // 全局变量
+        let renderer;
+        let scene;
+        let camera;
+        let controls;
+
+        /**
+         * 初始化场景对象
+         */
+        const initScene = () => {
+            // 创建场景
+            const scene = new THREE.Scene();
+            return scene;
+        }
+
+        /**
+         * 初始化几何体对象
+         */
+        function initGeometry() {
+            // 创建一个立方体几何对象
+            const cubeGeometry = new THREE.BoxGeometry(10 * Math.random(), 10 * Math.random(), 10 * Math.random());
+            return cubeGeometry;
+        }
+
+        /**
+         * 初始化材料对象
+         */
+        function initMaterial() {
+            // 创建一个网格材料对象
+            // const normalMaterial = new THREE.MeshNormalMaterial();
+            // return normalMaterial;
+            // 创建一个基础网格材料
+            // const basicMaterial = new THREE.MeshBasicMaterial();
+            // return basicMaterial;
+            const lambertMaterial = new THREE.MeshLambertMaterial({
+                color: 0x020202
+            });
+            return lambertMaterial;
+        }
+
+        /**
+         * 创建一个多面材料对象
+         */
+        function createMultiMaterial() {
+            const multiMaterial = [
+                new THREE.MeshLambertMaterial({
+                    color: 0xff0000
+                }),
+                new THREE.MeshLambertMaterial({
+                    color: 0xffff00
+                }),
+                new THREE.MeshLambertMaterial({
+                    color: 0xffffff
+                }),
+                new THREE.MeshLambertMaterial({
+                    color: 0x00ffff
+                }),
+                new THREE.MeshLambertMaterial({
+                    color: 0x0000ff
+                }),
+                new THREE.MeshLambertMaterial({
+                    color: 0x000000
+                })
+            ];
+            return multiMaterial;
+        }
+
+        /**
+         * 初始化网格模型
+         */
+        function initMesh(geometry, material) {
+            // 通过几何对象和材料对象创建一个可视化的立方体，并添加到场景中
+            const cube = new THREE.Mesh(geometry, material);
+            return cube;
+        }
+
+        /**
+         * 初始化光源对象
+         */
+        function initLight() {
+            const lights = [];
+
+            // 新建一个环境光
+            const ambient = new THREE.AmbientLight(0x777777);
+            lights.push(ambient);
+
+            // 新建一个平行光
+            const directionalLight = new THREE.DirectionalLight(0xFF0000, 0.92);
+            directionalLight.position.set(300, 200, 500);
+            lights.push(directionalLight);
+
+            return lights;
+        }
+
+        /**
+         * 初始化相机对象
+         */
+        function initCamera() {
+            // 创建一个相机
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 500000);
+            // 设置相机在创景中的位置
+            camera.up = new THREE.Vector3(0, 0, 1);
+            camera.position.set(0, -10, 18);
+            return camera;
+        }
+
+        /**
+         * 初始化渲染器对象
+         */
+        function initRenderer() {
+            // 创建一个渲染器，这里使用WebGL渲染器
+            const renderer = new THREE.WebGLRenderer({
+                antialias: true // 消除锯齿
+            });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            // 设置渲染器的背景色
+            renderer.setClearColor(0xf1f1f1, 1.0);
+            // 设置渲染器区域尺寸
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            return renderer;
+        }
+
+        /**
+         * 初始化网格辅助对象
+         */
+        function initGridHelper() {
+            // 边长为20000，大网格中有小网格，小网格的边长是1000.
+            const gridHelper = new THREE.GridHelper(20000, 20, 0x0000ff, 0x808080);
+            gridHelper.rotation.x = Math.PI / 2;
+            gridHelper.enabled = false;
+            return gridHelper;
+        }
+
+        /**
+         * 初始化控制器对象
+         */
+        function initControls(camera, dom) {
+            // 用户交互插件 鼠标左键按住旋转，右键按住平移，滚轮缩放
+            const controls = new THREE.OrbitControls(camera, dom);
+            // 聚焦坐标
+            controls.target.set(0, 0, 0);
+            controls.update();
+            return controls;
+        }
+
+        function init() {
+
+            // 初始化场景
+            scene = initScene();
+
+            // 初始化几何对象
+            const geometry = initGeometry();
+            // 初始化材料
+            const material = initMaterial();
+            // 初始化网格模型
+            const mesh = initMesh(geometry, material);
+            mesh.material = createMultiMaterial();
+            mesh.material.needsUpdate = true;
+
+            // 将网格模型添加到场景中
+            scene.add(mesh);
+
+            // 初始化灯光
+            const lights = initLight();
+
+            // 将光源添加到场景中
+            lights.forEach(light => {
+                scene.add(light);
+            });
+
+            // 初始网格辅助器
+            const gridHelper = initGridHelper();
+            scene.add(gridHelper);
+
+            // 初始化相机
+            camera = initCamera();
+            // 设置相机的方向（指向的场景对象）
+            camera.lookAt(scene.position);
+
+            // 初始化渲染器
+            renderer = initRenderer();
+
+            // 将渲染器的dom对象添加到文档中
+            document.body.appendChild(renderer.domElement);
+
+            // 初始化控制器
+            controls = initControls(camera, renderer.domElement);
+
+            // 执行render方法，进行渲染
+            render();
+        }
+
+        function render() {
+            requestAnimationFrame(render);
+            controls.update();
+            scene.rotation.x += 0.01;
+            scene.rotation.y += 0.01;
+            scene.rotation.z += 0.01;
+            renderer.render(scene, camera);
+        }
+
+        // 执行init初始化方法
+        window.onload = init;
+    </script>
+</body>
+
+</html>

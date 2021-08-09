@@ -1,0 +1,98 @@
+{
+    "metadata": {
+        "version": 4.5,
+        "type": "Object",
+        "generator": "Object3D.toJSON"
+    },
+    "geometries": [
+        {
+            "uuid": "6D90C4BE-EBA6-4E21-8F54-7CFDAA61F30B",
+            "type": "BoxGeometry",
+            "width": 10,
+            "height": 10,
+            "depth": 3,
+            "widthSegments": 1,
+            "heightSegments": 1,
+            "depthSegments": 1
+        }
+    ],
+    "materials": [
+        {
+            "uuid": "4AE8130E-B6A8-47BC-ACCF-060973C74044",
+            "type": "MeshPhongMaterial",
+            "color": 16777215,
+            "emissive": 0,
+            "specular": 1118481,
+            "shininess": 30,
+            "reflectivity": 1,
+            "refractionRatio": 0.98,
+            "depthFunc": 3,
+            "depthTest": true,
+            "depthWrite": true,
+            "colorWrite": true,
+            "stencilWrite": false,
+            "stencilWriteMask": 255,
+            "stencilFunc": 519,
+            "stencilRef": 0,
+            "stencilFuncMask": 255,
+            "stencilFail": 7680,
+            "stencilZFail": 7680,
+            "stencilZPass": 7680
+        }
+    ],
+    "object": {
+        "uuid": "A460C230-DC88-4A8F-A3FB-AA0FE735F3ED",
+        "type": "Mesh",
+        "name": "Box",
+        "layers": 1,
+        "matrix": [
+            1, 0, 0, 0, 0, 0.650199, -0.759764, 0, 0, 0.759764, 0.650199, 0, 0,
+            -0.5, 0, 1
+        ],
+        "geometry": "6D90C4BE-EBA6-4E21-8F54-7CFDAA61F30B",
+        "material": "4AE8130E-B6A8-47BC-ACCF-060973C74044",
+        "animation": "default"
+    },
+    "animations": [
+        {
+            "name": "default",
+            "fps": 24,
+            "tracks": [
+                {
+                    "type": "vector3",
+                    "name": "Box.position",
+                    "keys": [
+                        {
+                            "value": [0, 0, 0],
+                            "time": 0
+                        },
+                        {
+                            "value": [-100, 0, 0],
+                            "time": 50
+                        }
+                    ]
+                },
+                {
+                    "type": "quaternion",
+                    "name": "Box.quaternion",
+                    "keys": [
+                        {
+                            "value": [0, 0, 0, 0],
+                            "time": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "color",
+                    "name": "Box.material.color",
+                    "keys": [
+                        {
+                            "value": [1, 0, 0, 1],
+                            "time": 20
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
