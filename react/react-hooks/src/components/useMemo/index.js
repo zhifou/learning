@@ -34,9 +34,15 @@ import React, {memo, useMemo, useState} from 'react'
 
 const Child = memo((props) => {
     console.log('Child-render', Math.random())
+    const { onClick } = props;
+    const childClick = () => {
+        onClick && onClick();
+    }
+
     return <div>
         <div>名字：{props.name}</div>
         <div>年龄：{props.age}</div>
+        <button onClick={childClick}>子组件点击事件</button>
     </div>
 })
 
@@ -45,19 +51,26 @@ const Father = () => {
     const [age, setAge] = useState(18)
     const [sex, setSex] = useState('male')
 
+    const onChildClick = () => {
+        console.log('子组件button被点击了');
+    }
+
     const ChildComp = useMemo(() => <Child {...{
         name,
-        age
+        age,
+        onClick: onChildClick
     }} />, [name])
 
     console.log('Father-render', Math.random())
-    
+
+
     return <div>
-        {/* <Child {...{
+        <Child {...{
             name,
-            age
-        }} /> */}
-        {ChildComp}
+            age,
+            onClick: onChildClick
+        }} />
+        {/* {ChildComp} */}
         <input type="button" value="changeName" onClick={() => setName(Math.random() + '')} />
         <input type="button" value="changeAge" onClick={() => setAge(age + 1)} />
         <input type="button" value="changeSex" onClick={() => setSex('male' + sex)} />

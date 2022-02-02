@@ -26,6 +26,8 @@ import UseMemo from './components/useMemo';
 import UseCallback from './components/useCallback';
 import CreatePortal from './components/createPortal';
 import FlushSync from './components/flushSync';
+import UseSSR from './components/useSSR';
+import UseSelector from './components/useSelector';
 
 const App = () => {
   return (
@@ -97,6 +99,12 @@ const App = () => {
         <Link to="/flushSync" style={{ padding: 5 }}>
           FlushSync
           </Link>
+        <Link to="/useSSR" style={{ padding: 5 }}>
+          useSSR
+        </Link>
+        <Link to="/useSelector" style={{ padding: 5 }}>
+          useSelector
+        </Link>
       </nav>
       <Routes>
         <Route path="/" element={<Todo />} />
@@ -121,6 +129,8 @@ const App = () => {
         <Route path="/useCallback" element={<UseCallback />} />
         <Route path="/createPortal" element={<CreatePortal />} />
         <Route path="/flushSync" element={<FlushSync />} />
+        <Route path="/useSSR" element={<UseSSR />} />
+        <Route path="/useSelector" element={<UseSelector />} />
       </Routes>
     </Router>
   )
