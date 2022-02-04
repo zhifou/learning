@@ -8,7 +8,7 @@ const devConfig = {
     devServer: {
         port: 3000,
         // contentBase: '../dist',
-        open: true,
+        open: false,
         hot: true,
     },
     target: 'web',
