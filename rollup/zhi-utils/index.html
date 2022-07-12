@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>zhi-utils test page</title>
+    </head>
+
+    <body>
+        <h1>zhi-utils</h1>
+        <script type="module">
+            import utils from "./dist/zhi-utils.esm.js";
+            console.log(
+                "%c::randomNumberInRange",
+                "color:#00ffff",
+                utils.randomNumberInRange(1, 100),
+            );
+            console.log(
+                "%c::deepClone",
+                "color:#00bf00",
+                utils.sum(1, 2, 3, 10)
+            );
+            console.group('hello');
+            console.log(123);
+            console.log(34543);
+            var adfd = 333333;
+            setTimeout(() => {
+                console.log('fdsfdsa');
+            }, 2000);
+            console.log('fdsafdsafdas')
+
+            function A() {
+                console.log('A()');
+            }
+
+            A();
+            console.groupEnd('helloworld')
+            console.groupEnd('hello')
+
+            console.log('new log');
+        </script>
+    </body>
+</html>

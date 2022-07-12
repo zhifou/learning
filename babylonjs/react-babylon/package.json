@@ -1,0 +1,47 @@
+{
+    "name": "react-ts",
+    "version": "0.0.1",
+    "description": "#description#",
+    "scripts": {
+        "start": "skr dev",
+        "build": "skr build --clean",
+        "lint": "skr lint --strict",
+        "lint-staged": "npm run lint -- --staged"
+    },
+    "repository": {
+        "type": "git",
+        "url": "#sshURL#"
+    },
+    "author": "#author#",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "babylonjs": "^5.5.5",
+        "babylonjs-loaders": "^5.5.5",
+        "lodash": "^4.17.21",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-router-dom": "^5.3.1"
+    },
+    "devDependencies": {
+        "@reskript/cli": "^5.2.1",
+        "@reskript/cli-build": "^5.2.1",
+        "@reskript/cli-dev": "^5.2.1",
+        "@reskript/cli-lint": "^5.2.1",
+        "@reskript/config-lint": "^5.2.1",
+        "@types/lodash": "^4.14.182",
+        "@types/react": "17.0.2",
+        "@types/react-dom": "17.0.2",
+        "@types/react-router-dom": "^5.3.3",
+        "core-js": "^3.22.2",
+        "eslint": "^8.13.0",
+        "husky": "^7.0.4",
+        "stylelint": "^14.7.1",
+        "typescript": "^4.6.3",
+        "webpack": "^5.72.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint-staged"
+        }
+    }
+}

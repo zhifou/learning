@@ -28,6 +28,7 @@ import CreatePortal from './components/createPortal';
 import FlushSync from './components/flushSync';
 import UseSSR from './components/useSSR';
 import UseSelector from './components/useSelector';
+import UseBeforeUnload from './components/useBeforeUnload';
 
 const App = () => {
   return (
@@ -105,6 +106,9 @@ const App = () => {
         <Link to="/useSelector" style={{ padding: 5 }}>
           useSelector
         </Link>
+        <Link to="/useBeforeUnload" style={{ padding: 5 }}>
+        useBeforeUnload
+        </Link>
       </nav>
       <Routes>
         <Route path="/" element={<Todo />} />
@@ -131,6 +135,7 @@ const App = () => {
         <Route path="/flushSync" element={<FlushSync />} />
         <Route path="/useSSR" element={<UseSSR />} />
         <Route path="/useSelector" element={<UseSelector />} />
+        <Route path="/useBeforeUnload" element={<UseBeforeUnload />} />
       </Routes>
     </Router>
   )
