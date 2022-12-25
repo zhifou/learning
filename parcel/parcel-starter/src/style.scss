@@ -1,0 +1,23 @@
+/* 改名为 scss */
+@import "./global.scss";
+
+h1 {
+    color: $text-color;
+    padding-right: 1rem;
+}
+
+#wrap {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.12);
+}
+
+#copyright {
+    font-family: "Titillium-Web-Bold";
+    color: $black-color-light;
+}

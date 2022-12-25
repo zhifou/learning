@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: #ebeced;
+    font-size: 14px;
+}
+
+body {
+    margin: 0;
+    font-family: "PingFangSC-Regular", "Helvetica Neue", Helvetica, Arial,
+        "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei",
+        "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #ebeced;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+#root {
+    z-index: 9999999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.app {
+    display: grid;
+    grid-template: auto 1fr auto / auto 1fr auto;
+}
+
+.app header {
+    grid-column: 1 / 4;
+    background: #b2bec3;
+    padding: 12px 24px;
+}
+
+.app .left-side {
+    grid-column: 1 / 2;
+    background: #74b9ff;
+}
+
+.app main {
+    grid-column: 2 / 3;
+    background: rgba(116, 185, 255, 0.3);
+}
+
+.app .right-side {
+    grid-column: 3 / 4;
+    background: rgba(116, 185, 255, 0.3);
+}
+
+.app footer {
+    grid-column: 1 / 4;
+    padding: 1rem 0;
+    background: #dfe6e9;
+}

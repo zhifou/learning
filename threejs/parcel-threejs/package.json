@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.6.1"
+    "parcel": "^2.7.0"
   },
   "dependencies": {
-    "three": "^0.141.0"
+    "three": "^0.145.0"
   }
 }

@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "noEmit": true,
+      "esModuleInterop": true,
+      "jsx": "react"
+    },
+    "include": [
+      "src",
+      "./src/external.d.ts"
+    ]
+  }

@@ -1,0 +1,15 @@
+# 主车信息
+MAINCAR_MODEL:
+  - displayName: MKZ
+    value: MKZ
+    length: 4.93
+    width: 2.11
+    height: 1.48
+    wheelBase: 2.85
+
+  - displayName: EV
+    value: EV
+    length: 4.49
+    width: 2.01
+    height: 1.98
+    wheelBase: 2.75

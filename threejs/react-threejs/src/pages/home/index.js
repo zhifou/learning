@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as THREE from "three";
 // import { MeshLine, MeshLineMaterial } from "three.meshline";
-import { Geometry } from "three/examples/jsm/deprecated/Geometry.js";
+// import { Geometry } from "three/examples/jsm/deprecated/Geometry.js";
 
 const {
     Scene,
@@ -15,22 +15,22 @@ const {
 
 function Home() {
     useEffect(() => {
-        let geometries = [];
-        let geometry = new Geometry();
+        // let geometries = [];
+        // let geometry = new Geometry();
         // const geometry = new THREE.BufferGeometry();
-        const points = [];
-        for (let j = 0; j < Math.PI; j += (2 * Math.PI) / 100) {
-            const v = new THREE.Vector3(Math.cos(j), Math.sin(j), 0);
-            geometry.vertices.push(v);
-        }
+        // const points = [];
+        // for (let j = 0; j < Math.PI; j += (2 * Math.PI) / 100) {
+        //     const v = new THREE.Vector3(Math.cos(j), Math.sin(j), 0);
+        //     geometry.vertices.push(v);
+        // }
         // geometry.setFromPoints(points);
 
-        console.log(geometry);
+        // console.log(geometry);
         // let line = new MeshLine();
-        // // line.setPoints(points);
+        // line.setPoints(points);
         // line.setGeometry(geometry);
         // geometries.push(line.geometry);
-        console.log(geometries);
+        // console.log(geometries);
     }, []);
 
     useEffect(() => {

@@ -1,0 +1,17 @@
+directories:
+  output: output
+  buildResources: build
+productName: zhifou
+appId: co.zhifou
+copyright: zhifou80@163.com
+files:
+  - filter:
+      - dist/**/*
+      - electron/**/*
+nsis:
+  oneClick: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+linux: {}
+electronVersion: 18.1.0

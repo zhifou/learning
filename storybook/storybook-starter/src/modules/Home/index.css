@@ -1,0 +1,38 @@
+.main {
+    opacity: 1 !important;
+    transition: opacity 0.2s;
+    transition-delay: 0.1s;
+}
+
+.right-panel {
+    background-color: #fff;
+    border-left: 1px solid #ebeced;
+}
+
+.left-panel {
+    width: 233px;
+    left: 40px;
+    border-right: 1px solid #ebeced;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    min-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+    line-height: 48px;
+}
+
+.header-operator {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.header-share {
+    position: absolute;
+    right: 0;
+    top: 0;
+}

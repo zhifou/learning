@@ -1,0 +1,127 @@
+.service-item {
+  display: block;
+  width: 200px;
+  padding: 30px 16px;
+  text-align: center;
+  float: left;
+  height: 240px;
+  margin: 0 0 10px;
+  border: 1px solid #e7e7e7;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 160ms;
+}
+
+.item-image {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  line-height: 100px;
+  text-align: center;
+  border: 3px solid transparent;
+  margin: 0;
+  border-radius: 100%;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 160ms;
+  transition: all 160ms;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+
+.item-title {
+  line-height: 25px;
+  font-size: 18px;
+  color: #3d3d3d;
+  padding: 22px 0 7px;
+  font-family: 'PingFangSC-Regular', 'Microsoft YaHei', Tahoma, sans-serif;
+  font-weight: normal;
+}
+
+.item-text {
+  color: #9a9a9a;
+  font-size: 12px;
+  line-height: 17px;
+  height: 34px;
+  overflow: hidden;
+  font-family: 'PingFangSC-Regular', 'Microsoft YaHei', Tahoma, sans-serif;
+}
+
+.item-link {
+  font-family: 'PingFangSC-SC', 'Microsoft YaHei', Tahoma, sans-serif;
+  color: #ffffff;
+  display: none;
+  padding: 6px 20px;
+  background-color: #05a6f3;
+  margin: 17px auto;
+  font-size: 14px;
+  line-height: 25px;
+  border-radius: 5px;
+  -webkit-transition: all 160ms;
+  transition: all 160ms;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.service-item:hover {
+  border-color: #dedddd;
+  padding-top: 26px;
+  position: relative;
+  z-index: 99;
+  text-decoration: none;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  webkit-transform: translate3d(0, -3px, 0);
+  transform: translate3d(0, -3px, 0);
+}
+
+.service-item:hover .item-image {
+  height: 60px;
+  width: 60px;
+  line-height: 60px;
+  margin: 0 auto;
+}
+
+.service-item:hover .item-link {
+  display: block;
+}
+
+.service-item:hover .item-title {
+  padding: 10px 0 7px;
+}
+
+.service-item + .service-item {
+  margin-left: 50px;
+  position: relative;
+}
+
+.item-tag {
+  width: 67px;
+  height: 67px;
+  color: #ffffff;
+  position: absolute;
+  transform: rotateZ(-315deg);
+  top: 9px;
+  right: 9px;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.item-background {
+  width: 67px;
+  height: 67px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.item-background img {
+  width: 100%;
+  height: 100%;
+}

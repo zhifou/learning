@@ -1,0 +1,25 @@
+{
+    "name": "rollup-starter",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./dist/bundle.cjs",
+    "module": "./dist/bundle.mjs",
+    "types": "./dist/bundle.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "rollup --config rollup.config.ts --watch",
+        "build": "rollup --config rollup.config.ts"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@rollup/plugin-typescript": "^8.3.4",
+        "@types/node": "^18.6.5",
+        "rollup": "^2.77.2",
+        "rollup-plugin-dts": "^4.2.2",
+        "tslib": "^2.4.0",
+        "typescript": "^4.7.4"
+    }
+}

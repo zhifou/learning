@@ -1,0 +1,5 @@
+[deeply]
+option = false
+
+[deeply.nested]
+option = 'zhaoyadong'

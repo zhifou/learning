@@ -10,3 +10,5 @@ export const randomNumberInRange = (min: number, max: number) =>
  * @description 计算数组或多个数字的总和
  */
 export const sum = (...arr) => [...arr].reduce((acc, val) => acc + val, 0);
+
+export const add = (num: number) => num + Math.random();
