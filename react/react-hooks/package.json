@@ -17,7 +17,7 @@
     "zhooks": "^1.0.2"
   },
   "devDependencies": {
-    "react-scripts": "^3.4.3"
+    "react-scripts": "^5.0.1"
   },
   "browserslist": {
     "production": [
