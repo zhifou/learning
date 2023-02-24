@@ -25,7 +25,6 @@ export default class ThreeComponent extends React.Component {
         // 场景
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x000000);
-
         this.renderer = new THREE.WebGLRenderer({
             antialias: true,
             alpha: true,
@@ -53,7 +52,7 @@ export default class ThreeComponent extends React.Component {
     render() {
         return (
             <div
-                id="canvas"
+                id="canvas-webgl"
                 style={{ width: "100%", height: "100%" }}
                 ref={(mount) => {
                     this.mount = mount;

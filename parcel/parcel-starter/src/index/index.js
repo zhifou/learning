@@ -1,7 +1,7 @@
 import fs from 'fs';
 import $ from 'jquery';
 import { jokes } from './jokes';
-import { observer } from './observer';
+import { observer } from '../observer';
 
 const copy = fs.readFileSync(__dirname + '/copyright.txt', 'utf8');
 console.log(copy);

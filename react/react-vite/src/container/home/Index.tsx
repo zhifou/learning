@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Store from "@/store/home";
-import HomeChild from "@/container/home/HomeChild";
+import HomeChild from "@/container/home/homeChild";
 import { observer, Provider } from "mobx-react";
 
 interface IProps {}

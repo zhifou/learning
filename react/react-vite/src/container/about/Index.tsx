@@ -1,7 +1,15 @@
-import React from "react";
+import { Component } from "react";
 
-const About = () => {
-    return <div>This is about page</div>;
-};
+interface IProps {}
+
+class About extends Component<IProps> {
+    render() {
+        return (
+            <div>
+                <p>This is about component.</p>
+            </div>
+        );
+    }
+}
 
 export default About;

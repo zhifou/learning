@@ -6,7 +6,7 @@ export default (ws: any, req: any) => {
         ws.send(
             JSON.stringify({
                 code: 0,
-                msg: '开始调度',
+                msg: '开始调度' + Math.random(),
             })
         )
     }, 3000)

@@ -532,9 +532,12 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"3UfiP":[function(require,module,exports) {
-var _firstJs = require("./first.js");
+// import './first.js';
+// import './fog.js';
+// import './rain.js'
+var _box2Js = require("./box2.js");
 
-},{"./first.js":"V5NNs"}],"V5NNs":[function(require,module,exports) {
+},{"./box2.js":"2ZsVe"}],"2ZsVe":[function(require,module,exports) {
 var _three = require("three");
 var _orbitControls = require("three/examples/jsm/controls/OrbitControls");
 console.log("THREE", _three);
@@ -547,15 +550,22 @@ const renderer = new _three.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 // 将渲染器添加到dom节点中
 document.getElementById("main-canvas").appendChild(renderer.domElement);
-// 创建一个立方几何体对象
-const geometry = new _three.BoxGeometry(1, 1, 1);
-// 给上材质(颜色)
-const material = new _three.MeshBasicMaterial({
-    color: 0x00ff00
+// // 创建一个立方几何体对象
+// const geometry = new THREE.BoxGeometry(1, 1, 1);
+// // 给上材质(颜色)
+// const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+// // 创建一个网格(立方几何体)并添加到场景中
+// const cube = new THREE.Mesh(geometry, material);
+const box2 = new _three.Box2(new (0, _three.Vector2)(), new (0, _three.Vector2)());
+box2.setFromCenterAndSize({
+    x: 10,
+    y: 10
+}, {
+    x: 200,
+    y: 400
 });
-// 创建一个网格(立方几何体)并添加到场景中
-const cube = new _three.Mesh(geometry, material);
-scene.add(cube);
+console.log(box2);
+scene.add(box2);
 // 添加轨道控制器
 const controls = new (0, _orbitControls.OrbitControls)(camera, renderer.domElement);
 controls.enableDamping = true;
@@ -568,8 +578,8 @@ camera.position.z = 5;
 function animate() {
     controls.update();
     requestAnimationFrame(animate);
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    // cube.rotation.x += 0.01;
+    // cube.rotation.y += 0.01;
     renderer.render(scene, camera);
 }
 animate();

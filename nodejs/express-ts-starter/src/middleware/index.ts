@@ -1,5 +1,4 @@
 // index.ts
-import { Express } from 'express'
 import express from 'express'
 import responseHeader from './responseHeader'
 

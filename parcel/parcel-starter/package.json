@@ -5,8 +5,9 @@
   "source": "src/index.html",
   "main": "index.js",
   "scripts": {
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "start": "parcel src/index/index.html",
+    "start:fabric": "parcel src/fabric/index.html",
+    "build": "parcel build src/index/index.html"
   },
   "keywords": [],
   "author": "",

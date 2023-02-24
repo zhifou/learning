@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(47, 71, 255);
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  color: #ffffff;
+
+  .colorInput {
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .result {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
+
+    .copyIcon {
+      margin-left: 24px;
+      font-size: 12px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+
+  .transfer {
+    text-align: center;
+    padding: 4px 8px;
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    min-width: 75px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+}
