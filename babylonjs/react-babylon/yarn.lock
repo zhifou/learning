@@ -1105,13 +1105,6 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@babylonjs/core@^5.5.5":
-  version "5.5.5"
-  resolved "https://registry.yarnpkg.com/@babylonjs/core/-/core-5.5.5.tgz#169527bea5c796105af8613ce9e5e893a574980f"
-  integrity sha512-nRSb4LXgEtWluKlUqTi2si9x80dsmusLom3xIEPZ22OFfopzn6ujh+oi9Dry2E+g9wb6nESFdCkGGzxNbAowHg==
-  dependencies:
-    tslib "^2.3.1"
-
 "@csstools/postcss-color-function@^1.0.3":
   version "1.1.0"
   resolved "http://registry.npm.baidu-int.com/@csstools%2fpostcss-color-function/-/postcss-color-function-1.1.0.tgz#229966327747f58fbe586de35daa139db3ce1e5d"
@@ -2500,6 +2493,24 @@ babel-plugin-transform-typescript-metadata@^0.3.2:
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
+babylonjs-gltf2interface@^5.49.0:
+  version "5.49.0"
+  resolved "https://registry.yarnpkg.com/babylonjs-gltf2interface/-/babylonjs-gltf2interface-5.49.0.tgz#10ab797b9990b2baf859321e74b029a415e61dd6"
+  integrity sha512-Xg27lo4lQgISzHEUnLXDNhG0V9DC9WDSv1BiDcrTIlRi5IBVWT/uTdeipw2ijAOUQWYqFoT6MdP+WcuzoKo8iw==
+
+babylonjs-loaders@^5.5.5:
+  version "5.49.0"
+  resolved "https://registry.yarnpkg.com/babylonjs-loaders/-/babylonjs-loaders-5.49.0.tgz#fcf7bf43b8ce10324baa8fbfe9a279c5447969d8"
+  integrity sha512-I569xnU0/8KWn861dmNdWF963FkZeHAcxRlqpt5eeWYybruNy/6hRJuVMoI9S4b7Y4NyI9EBhYNkTtB3urjMqQ==
+  dependencies:
+    babylonjs "^5.49.0"
+    babylonjs-gltf2interface "^5.49.0"
+
+babylonjs@^5.49.0, babylonjs@^5.5.5:
+  version "5.49.0"
+  resolved "https://registry.yarnpkg.com/babylonjs/-/babylonjs-5.49.0.tgz#06d07881c94da3e6758ceed90c9d2f045b8b77c7"
+  integrity sha512-yCaiz+eDcbFojUS8cdsgQFGRYO5Nj7PjSs2eEVKwlIOqheeMJLXVyr01pJJ74rbMq1MPp9T8eZDrBs7Cndm8Rw==
+
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "http://registry.npm.baidu-int.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
@@ -3331,9 +3342,9 @@ dns-equal@^1.0.0:
   integrity sha1-s55/HabrCnW6nBcySzR1PEfgZU0=
 
 dns-packet@^5.2.2:
-  version "5.3.1"
-  resolved "http://registry.npm.baidu-int.com/dns-packet/-/dns-packet-5.3.1.tgz#eb94413789daec0f0ebe2fcc230bdc9d7c91b43d"
-  integrity sha512-spBwIj0TK0Ey3666GwIdWVfUpLyubpU53BTCu8iPn4r4oXd9O14Hjg3EHw3ts2oed77/SeckunUYCyRlSngqHw==
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/dns-packet/-/dns-packet-5.4.0.tgz#1f88477cf9f27e78a213fb6d118ae38e759a879b"
+  integrity sha512-EgqGeaBB8hLiHLZtp/IbaDQTL8pZ0+IvwzSHA6d7VyMDM+B9hgddEMa9xjK5oYnw0ci0JQ6g2XCD7/f6cafU6g==
   dependencies:
     "@leichtgewicht/ip-codec" "^2.0.1"
 
@@ -7833,7 +7844,7 @@ tslib@^1.8.1:
   resolved "http://registry.npm.baidu-int.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.1, tslib@^2.0.3, tslib@^2.3.0, tslib@^2.3.1:
+tslib@^2.0.1, tslib@^2.0.3, tslib@^2.3.0:
   version "2.4.0"
   resolved "http://registry.npm.baidu-int.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
